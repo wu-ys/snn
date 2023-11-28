@@ -1,4 +1,4 @@
-# Computer lab 3 
+# Computer lab 3
 
 **This project accounts for 15% of final scores!**
 
@@ -83,13 +83,9 @@ Your task is to train a two-layered SNN on the N-MNIST dataset using *SpikingJel
 i. According to the design rules of surrogate gradient functions, we can also design many other gradient functions that can also train SNN. For example, based on a trigonometric function (S(x) below) or a power function (P(x) below),
 $$
 S(x) = \begin{cases}
-
 1, &x>\alpha\\
-
 \dfrac12 \sin(\dfrac{\pi x}{2\alpha}) + \dfrac12, & -\alpha\le x\le \alpha\\
-
 0, & x<-\alpha
-
 \end{cases}
 $$
 
@@ -116,16 +112,14 @@ $$
 \mathbf{s}^l(t) = H(\mathbf{m}^l(t) - \Theta^l),\\
 \mathbf{v}^l(t) = \mathbf{m}^l(t) - \mathbf{s}^l(t) \theta^l.
 $$
-![img](D:\wys\classfile\2023-2024-1\neuralAI\lab3\readme.assets\clip_image002-1701136215655-11.png)
-
 Here $\mathbf{s}^l(t)$ refers to the output spikes of all neurons in layer l at time t, the element of which equals 1 if there is a spike and 0 otherwise.$H(\cdot)$ is the Heaviside step function. $\Theta^l$ is the vector of the firing threshold $\theta^l$. Your task is:
 
  
 
 i. According to ref. [3], there is a relationship between the average postsynaptic potential of neurons in adjacent layers:
-
-![img](D:\wys\classfile\2023-2024-1\neuralAI\lab3\readme.assets\clip_image010.png)
-
+$$
+\phi^l(T) = \mathbf{W}^l \phi^{l-1}(T) - \frac{\mathbf{v}^l(T) - \mathbf{v}^l(0)}{T}.
+$$
 Please use the above dynamic formula for integrate-and-fire neurons to deduce this conclusion.
 
 **Discussion**: Why does the conversion error mentioned in ref. [3] occur?
