@@ -15,13 +15,17 @@ Deep learning, a machine learning branch, uses artificial neural networks to lea
 ### I. Surrogate gradient training of Spiking Neural Networks (15 points)
 
 Surrogate gradient methods have been proposed to overcome the difficulties and improve SNN performance. Specifically, when describing the firing process of neurons, we usually use the Heaviside step function. Heaviside step functions are not differentiable. Therefore, direct training is not possible. In order to solve this problem, various surrogate gradient methods have been proposed, such as the choices offered in Fig. 3 in ref. [1]. The Heaviside step function is shown below:
+
 $$
 \Theta(x) = \begin{cases}1, & x>0 \\ 0, &x<0\end{cases}
 $$
+
 The principle of the gradient substitution method is that the spiking neuron uses the Heaviside function during forward propagation, while in backpropagation the derivative of a function is used to replace the pseudo gradient of Heaviside function. This function is also called the **surrogate function**. Typically, this function is shaped like a Heaviside, but has a smooth continuous function. For example, Sigmoid function can be used as a surrogate function:
+
 $$
 \sigma (x) = \frac{1}{1+\exp(-ax)}
 $$
+
 where a hyper-parameter $\alpha$ can be altered to change the smoothness. Fig. 1 shows the relationship between Heaviside function, Sigmoid surrogate function (a=5), and the derivative of surrogate function.
 
 *SpikingJelly* is a framework based on PyTorch that uses SNN for deep learning. In *SpikingJelly*, some of the surrogate functions are predefined in *spikingjelly.activation_based.surrogate*, including *Sigmoid, Atan*, etc. For the installation of *SpikingJelly*, see *Installation of SpikingJelly.* For a detailed introduction and advanced usage of *SpikingJelly*, see https://spikingjelly.readthedocs.io/zh-cn/latest/index.html.
@@ -81,6 +85,7 @@ The neuromorphic MNIST dataset preserves the same number and order of digits as 
 Your task is to train a two-layered SNN on the N-MNIST dataset using *SpikingJelly* and complete and discuss the following targets:
 
 i. According to the design rules of surrogate gradient functions, we can also design many other gradient functions that can also train SNN. For example, based on a trigonometric function (S(x) below) or a power function (P(x) below),
+
 $$
 S(x) = \begin{cases}
 1, &x>\alpha\\
@@ -106,19 +111,23 @@ iii. For the PiecewiseQuadratic function in *spikingjelly.activation_based.surro
 ### II Discussions (15 points)
 
 There is another approach to obtaining deep SNNs, which is to convert them from pre-trained artificial neural networks (ANNs). This approach is easier to train and has achieved remarkable performance on various tasks. However, ANN-SNN conversion is not a trivial process, as it involves mapping the continuous activation values of ANNs to the discrete spike rates of SNNs. This mapping introduces conversion errors, which can degrade the performance of the converted SNNs. One paper titled “**Optimal ANN-SNN Conversion for High-accuracy and Ultra-low-latency Spiking Neural Networks**” has made a deep analysis of the conversion errors [3] (Github link: [4]). In this paper, the authors propose a novel method to optimize the ANN-SNN conversion process (QCFS), which can reduce the conversion errors and the latency of the SNNs. The neurons they are using are integrate-and-fire neurons. For layer l, we have:
+
 $$
 \mathbf{m}^l(t) = \mathbf{v}^l(t-1) + \mathbf{W}^l \mathbf{x}^{l-1}(t),\\
 \mathbf{s}^l(t) = H(\mathbf{m}^l(t) - \Theta^l),\\
 \mathbf{v}^l(t) = \mathbf{m}^l(t) - \mathbf{s}^l(t) \theta^l.
 $$
+
 Here $\mathbf{s}^l(t)$ refers to the output spikes of all neurons in layer l at time t, the element of which equals 1 if there is a spike and 0 otherwise.$H(\cdot)$ is the Heaviside step function. $\Theta^l$ is the vector of the firing threshold $\theta^l$. Your task is:
 
  
 
 i. According to ref. [3], there is a relationship between the average postsynaptic potential of neurons in adjacent layers:
+
 $$
 \phi^l(T) = \mathbf{W}^l \phi^{l-1}(T) - \frac{\mathbf{v}^l(T) - \mathbf{v}^l(0)}{T}.
 $$
+
 Please use the above dynamic formula for integrate-and-fire neurons to deduce this conclusion.
 
 **Discussion**: Why does the conversion error mentioned in ref. [3] occur?
