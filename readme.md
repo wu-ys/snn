@@ -84,9 +84,8 @@ i. According to the design rules of surrogate gradient functions, we can also de
 $$
 S(x) = \begin{cases}
 1, &x>\alpha\\
-\dfrac12 \sin(\dfrac{\pi x}{2\alpha}) + \dfrac12, & -\alpha\le x\le \alpha\\
-0, & x<-\alpha
-\end{cases}
+\dfrac12 \sin\dfrac{\pi x}{2\alpha} + \dfrac12, & -\alpha\le x\le \alpha\\
+0, & x<-\alpha\end{cases}
 $$
 
 $$
