@@ -17,7 +17,9 @@ Deep learning, a machine learning branch, uses artificial neural networks to lea
 Surrogate gradient methods have been proposed to overcome the difficulties and improve SNN performance. Specifically, when describing the firing process of neurons, we usually use the Heaviside step function. Heaviside step functions are not differentiable. Therefore, direct training is not possible. In order to solve this problem, various surrogate gradient methods have been proposed, such as the choices offered in Fig. 3 in ref. [1]. The Heaviside step function is shown below:
 
 $$
-\Theta(x) = \begin{cases}1, & x>0 \\ 0, &x<0\end{cases}
+\Theta(x) = \begin{cases}
+1, & x>0 \\
+0, &x<0\end{cases}
 $$
 
 The principle of the gradient substitution method is that the spiking neuron uses the Heaviside function during forward propagation, while in backpropagation the derivative of a function is used to replace the pseudo gradient of Heaviside function. This function is also called the **surrogate function**. Typically, this function is shaped like a Heaviside, but has a smooth continuous function. For example, Sigmoid function can be used as a surrogate function:
@@ -118,7 +120,7 @@ $$
 \mathbf{v}^l(t) = \mathbf{m}^l(t) - \mathbf{s}^l(t) \theta^l.
 $$
 
-Here $\mathbf{s}^l(t)$ refers to the output spikes of all neurons in layer l at time t, the element of which equals 1 if there is a spike and 0 otherwise.$H(\cdot)$ is the Heaviside step function. $\Theta^l$ is the vector of the firing threshold $\theta^l$. Your task is:
+Here $\mathbf{s}^l(t)$ refers to the output spikes of all neurons in layer l at time t, the element of which equals 1 if there is a spike and 0 otherwise. $H(\cdot)$ is the Heaviside step function. $\Theta^l$ is the vector of the firing threshold $\theta^l$. Your task is:
 
  
 
