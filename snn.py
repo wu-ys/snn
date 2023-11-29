@@ -165,6 +165,6 @@ if __name__ == "__main__":
 
     modelfile_name = model_name + ".pt"
 
-    np.savez(result_path / datafile_name, **data_dict)
+    np.savez(result_path / surrogate_name / datafile_name, **data_dict)
 
-    torch.save(net, result_path / modelfile_name)
+    torch.save(net, result_path / surrogate_name / modelfile_name)

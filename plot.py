@@ -4,13 +4,13 @@ from pathlib import Path
 
 result_path = Path("/home/wuys/wys/snn/results")
 plot_path = Path("/home/wuys/wys/snn/plots")
-surrogate_name = 'trigono'
-alpha = 1.0
+surrogate_name = 'soft_sign'
+alpha = 2.0
 
 model_name = "snn_surro_" + surrogate_name + "_alpha" + str(alpha)
 
 datafile_name = model_name + ".npz"
-d = np.load(result_path / datafile_name)
+d = np.load(result_path / surrogate_name / datafile_name)
 
 plt.plot(d['train_acc'], color='tab:blue', label="train accuracy")
 plt.plot(d['test_acc'], color='tab:red', label="test accuracy")
