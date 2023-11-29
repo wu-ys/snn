@@ -10,7 +10,6 @@ from pathlib import Path
 from spikingjelly.datasets import n_mnist
 from spikingjelly.activation_based import neuron, functional, surrogate, layer
 from tqdm import tqdm
-from spikingjelly.activation_based.surrogate import SurrogateFunctionBase
 
 from power_surrogate import PowerSurrogate
 from trigono_surrogate import TrigonoSurrogate

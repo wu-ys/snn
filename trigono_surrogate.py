@@ -1,15 +1,5 @@
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
-import torch.utils.data as data
-import torchvision
-import numpy as np
 
-from pathlib import Path
-
-from spikingjelly.datasets import n_mnist
-from spikingjelly.activation_based import neuron, functional, surrogate, layer
-from tqdm import tqdm
 from spikingjelly.activation_based.surrogate import SurrogateFunctionBase
 
 @torch.jit.script
