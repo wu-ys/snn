@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.utils.data as data
 import torchvision
+import argparse
 import numpy as np
 
 from pathlib import Path
@@ -53,8 +54,15 @@ class SNN(nn.Module):
         return self.layer(x)
 
 if __name__ == "__main__":
-    surrogate_name = 'sigmoid'
-    alpha = 5.
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-s", "--surrogate", type=str, help="Surrogate function type")
+    parser.add_argument("-a", "--alpha", type=float, help="Alpha value")
+
+    args = parser.parse_args()
+
+    surrogate_name = args.surrogate
+    alpha = args.alpha
     T = 8
     train_dataset = n_mnist.NMNIST(root=nmnist_root,
                                 train=True,
