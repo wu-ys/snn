@@ -1,11 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
+import argparse
 
 result_path = Path("/home/wuys/wys/snn/results")
 plot_path = Path("/home/wuys/wys/snn/plots")
-surrogate_name = 'soft_sign'
-alpha = 2.0
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-s", "--surrogate", type=str, help="Surrogate function type")
+parser.add_argument("-a", "--alpha", type=float, help="Alpha value")
+
+args = parser.parse_args()
+
+surrogate_name = args.surrogate
+alpha = args.alpha
 
 model_name = "snn_surro_" + surrogate_name + "_alpha" + str(alpha)
 

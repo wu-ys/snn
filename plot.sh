@@ -3,7 +3,6 @@ for surrogate in atan erf piecewise_quad piecewise_exp soft_sign
 do
   for alpha in 0.25 0.75 1.5
   do
-    nohup python3 snn.py -s $surrogate -a $alpha > nohup_"$surrogate"_"$alpha".out 2>&1 &
+    python3 plot.py -s $surrogate -a $alpha
   done
 done
-
