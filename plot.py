@@ -37,4 +37,4 @@ plt.annotate('Final train acc:\n{:4f}'.format(d['train_acc'][-1]), xy=(19, d['tr
 plt.annotate('Final test acc:\n{:4f}'.format(d['test_acc'][-1]), xy=(19, d['test_acc'][-1]), xycoords='data',
             xytext=(-40, -25), textcoords='offset points')
 
-plt.savefig(plot_path / "{}.jpg".format(model_name))
+plt.savefig(plot_path / surrogate_name / "{}.jpg".format(model_name))
